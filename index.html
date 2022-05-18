@@ -8,7 +8,7 @@
     />
 
     <title>Econify Atomic CSS</title>
-    <link rel="icon" type="image/x-icon" href="/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="favicon.png" />
 
     <link rel="stylesheet" href="dist/reset.css" />
     <link rel="stylesheet" href="dist/reveal.css" />
@@ -26,7 +26,24 @@
           <img src="econify.svg" />
           <h1>Atomic CSS</h1>
           <p class="byline">By Andrew Smith and team</p>
-          <aside class="notes">what is the goal of this presentation?</aside>
+          <aside class="notes">
+            what is the goal of this presentation?
+            <ul>
+              <li>Software engineer at Econify</li>
+              <li>Build websites for media companies</li>
+              <li>
+                high traffic sites where SEO and performance are really
+                important
+              </li>
+              <ul>
+                agenda
+                <li>talking about a styling system we built for this client</li>
+                <li>things we tried</li>
+                <li>problems we wanted to solve</li>
+                <li>benefits of atomic css</li>
+              </ul>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -63,6 +80,9 @@
           <aside class="notes">
             <ul>
               <li>large newspaper publisher</li>
+              <li>they're stack is really old like 20 years</li>
+              <li>lighthouse metrics are not great</li>
+              <li>new stack: next.js, graphql, mongodb</li>
               <li>something like 50 brands</li>
               <li>needed to inject brand css into the document</li>
               <li>
@@ -209,28 +229,42 @@
           </section>
 
           <section>
-            <img src="./components.png" />
+            <img src="components.png" />
           </section>
 
           <section>
-            <img src="./atomic.png" />
+            <img src="atomic.png" />
           </section>
         </section>
 
         <section>
           <h1>The problems 👻</h1>
           <ul>
-            <li>hard to read jsx</li>
+            <li>cluttered components</li>
             <li>learning curve / don't know what classes mean</li>
+            <li>project is tightly coupled with your CSS system</li>
           </ul>
         </section>
 
         <section>
           <h3>Econify solution 🙌🏻</h3>
           <section>
-            <aside class="notes">TODO: include typescript checking in cx</aside>
+            <aside class="notes">
+              right now we're below 100kb of CSS, 12kb compressed, even without
+              purging
+            </aside>
+            <ul>
+              <li>generate CSS ahead of time with Javascript</li>
+              <li>generate types</li>
+              <li>generate documentation</li>
+              <li>generate code snippets</li>
+              <li>use syntactic sugar and helper functions</li>
+            </ul>
+          </section>
+          <section>
+            <p>styled.*</p>
             <pre>
-              <code data-trim data-line-numbers="|1|3,11">
+              <code data-trim data-line-numbers="|1|3,11|8-10">
                 <script type="text/template">
                   import { cx, styled } from '@utils';
                   
@@ -252,8 +286,9 @@
           </section>
 
           <section>
+            <p>box</p>
             <pre>
-              <code data-trim data-line-numbers="|1|5">
+              <code data-trim data-line-numbers="|1,5">
                 <script type="text/template">
                   import { box } from '@utils';
                   
@@ -271,7 +306,63 @@
           </section>
 
           <section>
-            TODO: screen record demoing intellisense + snippets + typescript
+            <p>variants</p>
+            <pre>
+              <code class="language-jsx" data-trim data-line-numbers="1,3-8|13-20|20">
+                <script type="text/template">
+                  import { cx, switchProp } from '@utils';
+      
+                  const getColor = switchProp('color', {
+                    brand: ['c-primary', 'b-primary'],
+                    black: ['c-white', 'bg-black'],
+                    white: ['c-black', 'bg-white'],
+                    gray: ['c-white', 'bg-gray600', 'b-transparent'],
+                  });
+      
+                  function Logo(props) {
+                    return (
+                      <div
+                        className={cx(
+                          'ttu',
+                          'border',
+                          'f',
+                          'aic',
+                          'jcc',
+                          'f-uiA',
+                          getColor(props)
+                        )}>
+                        {props.children}
+                      </div>
+                    );
+                  }
+                </script>
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <p>responsive</p>
+            <pre>
+              <code class="language-jsx" data-trim data-line-numbers="5">
+                <script type="text/template">
+                  import { cx } from '@utils';
+
+                  function Card({ children, title }) {
+                    return (
+                      <article className={cx('f', 'fdc', 'md:fdr')}>
+                        <h4 className={cx('fw500')}>{title}</h4>
+                        <div>{children}</div>
+                      </article>
+                    );
+                  }
+                </script>
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <p>snippets & type checking</p>
+            <video data-autoplay src="demo.mov"></video>
           </section>
         </section>
 
