@@ -25,66 +25,44 @@
         <section>
           <img src="econify.svg" />
           <h1>Atomic CSS</h1>
-          <p class="byline">By Andrew Smith and team</p>
+          <p class="byline">By Andrew Smith and Team</p>
           <aside class="notes">
-            what is the goal of this presentation?
             <ul>
-              <li>Software engineer at Econify</li>
               <li>Build websites for media companies</li>
               <li>
                 high traffic sites where SEO and performance are really
                 important
               </li>
+              <li>
+                TODO: new slide / if a page’s load time goes up from 1 second to
+                3 seconds, the probability of the user bouncing increases by
+                32%.
+              </li>
               <ul>
-                agenda
-                <li>talking about a styling system we built for this client</li>
-                <li>things we tried</li>
-                <li>problems we wanted to solve</li>
-                <li>benefits of atomic css</li>
+                topics
+                <li>goals for this project</li>
+                <li>
+                  things we tried, problems to solve, benefits of atomic css
+                </li>
+                <li>custom atomic css system</li>
               </ul>
             </ul>
           </aside>
         </section>
 
         <section>
-          <h1>We don't want 👎</h1>
-          <ul>
-            <li>to ship too much CSS</li>
-            <li>to ship unused CSS</li>
-            <li>complicated dependencies</li>
-            <li>loading order to affect styling</li>
-            <li>flash of unstyled content</li>
-          </ul>
-        </section>
-
-        <section>
-          <h1>We want 👍</h1>
-          <ul>
-            <li>to constrain CSS</li>
-            <li>have the power of JS available in CSS</li>
-            <li>to pre-compute as much as possible</li>
-            <li>a zero kB runtime</li>
-            <li>
-              a good DX
-              <ul>
-                <li>remove unnecessary mappings</li>
-                <li>typescript</li>
-                <li>variants</li>
-              </ul>
-            </li>
-          </ul>
-        </section>
-
-        <section>
-          <h1>The project 🗓</h1>
+          <h1>Atomic CSS</h1>
+          <p><b>outrageous claim:</b> most of your CSS is redundant</p>
+          <p>top 1.3% of unique property-value pairs covered 54% of all CSS</p>
+          <p>TODO: move to separate slide</p>
           <aside class="notes">
             <ul>
               <li>large newspaper publisher</li>
-              <li>they're stack is really old like 20 years</li>
-              <li>lighthouse metrics are not great</li>
+              <li>stack is really old like 20 years</li>
+              <li>performance metrics are not great</li>
+              <li>TODO: highlight this - something like 50 brands</li>
+              <li>TODO: we wanted something specific to this client</li>
               <li>new stack: next.js, graphql, mongodb</li>
-              <li>something like 50 brands</li>
-              <li>needed to inject brand css into the document</li>
               <li>
                 we did an analysis of their current site and learned that the
                 top 100 (1.3%) unique prop-value-pairs cover 54% of all CSS
@@ -95,14 +73,74 @@
         </section>
 
         <section>
-          <section><h1>We tried...</h1></section>
+          <h3>What is Atomic CSS?</h3>
+          <aside class="notes">
+            <ul>
+              <li>atomic - only write html</li>
+              <li>traditional - write html and css</li>
+            </ul>
+          </aside>
+          <pre><code data-trim data-line-numbers>
+            .f {
+              display: flex;
+            }
+
+            .c-black {
+              color: var(--black);
+            }
+
+            .m4 {
+              margin: var(--s4);
+            }
+          </code></pre>
+        </section>
+
+        <section>
+          <section>
+            <h1>The benefits ✅</h1>
+            <ul>
+              <li>className tells a story</li>
+              <li>stick to the design system</li>
+              <li>limit choices</li>
+              <li>cap max CSS bytes</li>
+              <li>productive DX</li>
+              <li>maintainable</li>
+            </ul>
+          </section>
+
+          <section>
+            <img src="components.png" />
+          </section>
+
+          <section>
+            <img src="atomic.png" />
+          </section>
+        </section>
+
+        <section>
+          <h1>The problems 👻</h1>
+          <ul>
+            <li>cluttered components</li>
+            <li>learning curve / don't know what classes mean</li>
+            <li>project is tightly coupled with your CSS system</li>
+            <li>purge unused CSS</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <aside class="notes">summarize coming slides</aside>
+            <h1>We tried...</h1>
+          </section>
 
           <section>
             <h3>Styled Components 💅</h3>
             <aside class="notes">
               like - nice syntax - don't need to leave js file - productive -
               still just css don't like - added complex runtime dependency - bad
-              performance
+              performance TODO: emphasize bad performance and how it puts work
+              on the main thread / in the component world styles should live
+              with components
             </aside>
             <pre>
             <code data-trim data-line-numbers="|3-7|14-21">
@@ -193,64 +231,39 @@
         </section>
 
         <section>
-          <h3>What is Atomic CSS?</h3>
-          <aside class="notes">
-            <ul>
-              <li>atomic - only write html</li>
-              <li>traditional - write html and css</li>
-            </ul>
-          </aside>
-          <pre><code data-trim data-line-numbers>
-            .f {
-              display: flex;
-            }
-
-            .c-black {
-              color: var(--black);
-            }
-
-            .m4 {
-              margin: var(--s4);
-            }
-          </code></pre>
-        </section>
-
-        <section>
-          <section>
-            <h1>The benefits ✅</h1>
-            <ul>
-              <li>className tells a story</li>
-              <li>stick to the design system</li>
-              <li>limit choices</li>
-              <li>cap max CSS bytes</li>
-              <li>productive DX</li>
-              <li>maintainable</li>
-            </ul>
-          </section>
-
-          <section>
-            <img src="components.png" />
-          </section>
-
-          <section>
-            <img src="atomic.png" />
-          </section>
-        </section>
-
-        <section>
-          <h1>The problems 👻</h1>
+          <h1>We don't want 👎</h1>
           <ul>
-            <li>cluttered components</li>
-            <li>learning curve / don't know what classes mean</li>
-            <li>project is tightly coupled with your CSS system</li>
+            <li>to ship too much CSS</li>
+            <li>to ship unused CSS</li>
+            <li>complicated dependencies</li>
+            <li>loading order to affect styling</li>
+            <li>flash of unstyled content</li>
           </ul>
         </section>
 
         <section>
-          <h3>Econify solution 🙌🏻</h3>
+          <h1>We want 👍</h1>
+          <ul>
+            <li>to constrain CSS</li>
+            <li>have the power of JS available in CSS</li>
+            <li>to pre-compute as much as possible</li>
+            <li>a zero kB runtime</li>
+            <li>
+              a good DX
+              <ul>
+                <li>remove unnecessary mappings</li>
+                <li>typescript</li>
+                <li>variants</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Our solution 🎉</h3>
           <section>
             <aside class="notes">
-              right now we're below 100kb of CSS, 12kb compressed, even without
+              right now we're below 100kb of CSS, 5kb compressed, even without
               purging
             </aside>
             <ul>
@@ -361,15 +374,36 @@
           </section>
 
           <section>
+            <aside class="notes">
+              <ul>
+                <li>emphasize snippets, short hand or css property</li>
+              </ul>
+            </aside>
             <p>snippets & type checking</p>
             <video data-autoplay src="demo.mov"></video>
           </section>
         </section>
 
+        <section>TODO: what about purging?</section>
+
         <section>
           <img src="econify.svg" />
           <p><> https://github.com/Econify/moonshine-css</p>
           <p>📧 andrew@econify.com</p>
+          <aside class="notes">
+            <ul>
+              <li>tailwind meets styled components</li>
+              <li>extremely simple</li>
+              <li>tiny runtime</li>
+              <li>super fast</li>
+              <li>get going quickly 🏎</li>
+            </ul>
+            two takeaways
+            <ul>
+              <li>use this open src project</li>
+              <li>we're hiring</li>
+            </ul>
+          </aside>
         </section>
       </div>
     </div>
