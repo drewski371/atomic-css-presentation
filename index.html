@@ -33,41 +33,53 @@
                 high traffic sites where SEO and performance are really
                 important
               </li>
+            </ul>
+            <ul>
+              topics
               <li>
-                TODO: new slide / if a page’s load time goes up from 1 second to
-                3 seconds, the probability of the user bouncing increases by
-                32%.
+                atomic css - what it is and why it's great for performance
               </li>
-              <ul>
-                topics
-                <li>goals for this project</li>
-                <li>
-                  things we tried, problems to solve, benefits of atomic css
-                </li>
-                <li>custom atomic css system</li>
-              </ul>
+              <li>things we tried, problems to solve</li>
+              <li>demo custom atomic css system</li>
+              <li>
+                TODO: I want to give you some context to help show how we got
+                here
+              </li>
             </ul>
           </aside>
         </section>
 
         <section>
-          <h1>Atomic CSS</h1>
-          <p><b>outrageous claim:</b> most of your CSS is redundant</p>
-          <p>top 1.3% of unique property-value pairs covered 54% of all CSS</p>
-          <p>TODO: move to separate slide</p>
+          <p>
+            an increase from 1 to 3 seconds in page load time makes a visitor
+            32% more likely to leave your site
+          </p>
+          <h2>💸</h2>
           <aside class="notes">
+            when you make money through ad revenue that's a huge deal
             <ul>
               <li>large newspaper publisher</li>
               <li>stack is really old like 20 years</li>
               <li>performance metrics are not great</li>
-              <li>TODO: highlight this - something like 50 brands</li>
-              <li>TODO: we wanted something specific to this client</li>
               <li>new stack: next.js, graphql, mongodb</li>
+              <li>something like 50 brands / theming is important</li>
+              <li>we had to decide the best way to style this website</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <p>top 1.3% of unique property-value pairs covered 54% of all CSS</p>
+          <img src="spiderman.png" width="575px" height="500px" />
+          <aside class="notes">
+            <ul>
+              <li>TODO: how big is their current CSS?</li>
               <li>
-                we did an analysis of their current site and learned that the
-                top 100 (1.3%) unique prop-value-pairs cover 54% of all CSS
-                (7666 lines of css analyzed)
+                what that means - duplication everywhere. a very small amount of
+                styles covered half of their styling needs overall
               </li>
+              <li>traditional model - most of your CSS is redundant</li>
+              <li>this is why we love atomic css</li>
             </ul>
           </aside>
         </section>
@@ -76,6 +88,7 @@
           <h3>What is Atomic CSS?</h3>
           <aside class="notes">
             <ul>
+              <li>aka utility CSS</li>
               <li>atomic - only write html</li>
               <li>traditional - write html and css</li>
             </ul>
@@ -99,48 +112,56 @@
           <section>
             <h1>The benefits ✅</h1>
             <ul>
-              <li>className tells a story</li>
+              <li>cap max CSS bytes</li>
               <li>stick to the design system</li>
               <li>limit choices</li>
-              <li>cap max CSS bytes</li>
+              <li>className tells a story</li>
               <li>productive DX</li>
               <li>maintainable</li>
             </ul>
           </section>
-
-          <section>
-            <img src="components.png" />
-          </section>
-
-          <section>
-            <img src="atomic.png" />
-          </section>
         </section>
 
         <section>
-          <h1>The problems 👻</h1>
-          <ul>
-            <li>cluttered components</li>
-            <li>learning curve / don't know what classes mean</li>
-            <li>project is tightly coupled with your CSS system</li>
-            <li>purge unused CSS</li>
-          </ul>
+          <img src="components.png" />
+        </section>
+
+        <section>
+          <img src="atomic.png" />
         </section>
 
         <section>
           <section>
-            <aside class="notes">summarize coming slides</aside>
-            <h1>We tried...</h1>
+            <aside class="notes">
+              <ul>
+                <li>styled components</li>
+                <li>css modules</li>
+                <li>tailwind</li>
+              </ul>
+            </aside>
           </section>
 
           <section>
             <h3>Styled Components 💅</h3>
             <aside class="notes">
-              like - nice syntax - don't need to leave js file - productive -
-              still just css don't like - added complex runtime dependency - bad
-              performance TODO: emphasize bad performance and how it puts work
-              on the main thread / in the component world styles should live
-              with components
+              <ul>
+                like
+                <li>nice syntax</li>
+                <li>don't need to leave js file</li>
+                <li>
+                  in this component-first world that we live in, it makes sense
+                  for styles to live with the component
+                </li>
+                <li>productive</li>
+              </ul>
+              <ul>
+                don't like
+                <li>complex runtime dependency</li>
+                <li>bad performance</li>
+                <li>
+                  puts work on the main thread client side TODO: confirm this
+                </li>
+              </ul>
             </aside>
             <pre>
             <code data-trim data-line-numbers="|3-7|14-21">
@@ -173,8 +194,18 @@
           <section>
             <h3>CSS Modules</h3>
             <aside class="notes">
-              like - just css - it's simple - scoping don't like - boilerplate -
-              have to think of class name - duplication of styles
+              like
+              <ul>
+                <li>just css</li>
+                <li>simple</li>
+                <li>scoping</li>
+              </ul>
+              don't like
+              <ul>
+                <li>boilerplate</li>
+                <li>naming things</li>
+                <li>duplication of styles</li>
+              </ul>
             </aside>
             <pre>
               <code data-trim data-line-numbers="|2-6|8,12">
@@ -203,8 +234,12 @@
           <section>
             <h3>TailwindCSS</h3>
             <aside class="notes">
-              gives you a design system - caps max css bytes - limits choices -
-              tells a story
+              <ul>
+                <li>we want full control</li>
+                <li>built according to client's needs</li>
+                <li>we needed to inject themes</li>
+                <li>we wanted to build something more simple</li>
+              </ul>
             </aside>
             <pre>
             <code data-trim data-line-numbers="|3">
@@ -261,23 +296,50 @@
 
         <section>
           <h3>Our solution 🎉</h3>
+
           <section>
             <aside class="notes">
-              right now we're below 100kb of CSS, 5kb compressed, even without
-              purging
+              <ul>
+                <li>improve dev experience without adding bloat</li>
+                <li>
+                  right now we're below 100kb of CSS, 5kb compressed, even
+                  without purging
+                </li>
+              </ul>
             </aside>
             <ul>
-              <li>generate CSS ahead of time with Javascript</li>
+              <li>generate CSS ahead of time</li>
               <li>generate types</li>
               <li>generate documentation</li>
               <li>generate code snippets</li>
               <li>use syntactic sugar and helper functions</li>
             </ul>
           </section>
+
           <section>
+            <aside class="notes">
+              TODO: compare each example with how it would look without our
+              system
+              <ul>
+                <li>emphasize snippets, short hand or css property</li>
+                <li>reduce learning curve</li>
+                <li>I don't know that aic means align-items: center</li>
+              </ul>
+            </aside>
+            <p>snippets & type checking</p>
+            <video src="demo.mov"></video>
+          </section>
+
+          <section>
+            <aside class="notes">
+              <ul>
+                <li>inspired by styled components</li>
+                <li>reduce clutter by hoisting</li>
+              </ul>
+            </aside>
             <p>styled.*</p>
             <pre>
-              <code data-trim data-line-numbers="|1|3,11|8-10">
+              <code data-trim data-line-numbers="|1|3,9">
                 <script type="text/template">
                   import { cx, styled } from '@utils';
                   
@@ -286,9 +348,7 @@
                   function Tag({ badgeText, seperator }) {
                     return (
                       <div className={cx('f', 'aib')}>
-                        <span className={cx(
-                          seperator ? ['db', 'mx3'] : 'dn'
-                        )} />
+                        <span className={cx('mx3')>|</span>
                         <Badge>{badgeText}</Badge>
                       </div>
                     );
@@ -300,6 +360,14 @@
 
           <section>
             <p>box</p>
+            <aside class="notes">
+              <ul>
+                <li>
+                  alternative syntax if you don't want to wrap classes in cx()
+                </li>
+                <li>still has type checking</li>
+              </ul>
+            </aside>
             <pre>
               <code data-trim data-line-numbers="|1,5">
                 <script type="text/template">
@@ -308,7 +376,7 @@
                   function Card({ children, title }) {
                     return (
                       <box.article cx={['f', 'aib']}>
-                        <box.h4 cx={['bold']}>{title}</box.h4>
+                        <box.h4 cx={['fwb']}>{title}</box.h4>
                         {children}
                       </box.article>
                     );
@@ -319,9 +387,14 @@
           </section>
 
           <section>
+            <aside class="notes">
+              <ul>
+                <li>color variant</li>
+              </ul>
+            </aside>
             <p>variants</p>
             <pre>
-              <code class="language-jsx" data-trim data-line-numbers="1,3-8|13-20|20">
+              <code class="language-jsx" data-trim data-line-numbers="1,3-8|13-20">
                 <script type="text/template">
                   import { cx, switchProp } from '@utils';
       
@@ -354,6 +427,7 @@
           </section>
 
           <section>
+            <aside class="notes">responsive styles made easy</aside>
             <p>responsive</p>
             <pre>
               <code class="language-jsx" data-trim data-line-numbers="5">
@@ -372,36 +446,79 @@
               </code>
             </pre>
           </section>
-
-          <section>
-            <aside class="notes">
-              <ul>
-                <li>emphasize snippets, short hand or css property</li>
-              </ul>
-            </aside>
-            <p>snippets & type checking</p>
-            <video data-autoplay src="demo.mov"></video>
-          </section>
         </section>
 
-        <section>TODO: what about purging?</section>
+        <section>
+          <section>
+            <h1>Moonshine CSS</h1>
+            <p><> https://github.com/Econify/moonshine-css</p>
+            <aside class="notes">
+              as a bonus...
+              <ul>
+                <li>tailwind meets styled components</li>
+                <li>extremely simple</li>
+                <li>tiny runtime</li>
+                <li>super fast</li>
+                <li>get going quickly 🏎</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Features</h2>
+            <ul id="features">
+              <li>🥃 Minimal and simple atomic CSS framework</li>
+              <li>⚗️ 100% customizable - build your own CSS framework</li>
+              <li>🦀 Blazing fast generator written in Rust</li>
+              <li>🐜 Tiny 1.1 kB runtime</li>
+              <li>⚛️ React integration</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Usage</h2>
+
+            <pre>
+              <code class="language-jsx" data-trim data-line-numbers>
+                <script type="text/template">
+                  /* App.tsx */
+                  import 'atomic-styles.css';
+
+                  /* Demo.tsx */
+                  import { styled } from '@econify/moonshine-css';
+
+                  const Button = styled.button(
+                    'bg-blue500',
+                    'hover:bg-blue700',
+                    'c-white',
+                    'py2',
+                    'px4',
+                    'br2',
+                  );
+
+                  export default function Demo() {
+                    return (
+                      <div>
+                        <Button>Click me</Button>
+                      </div>
+                    );
+                  };
+                </script>
+              </code>
+            </pre>
+          </section>
+        </section>
 
         <section>
           <img src="econify.svg" />
           <p><> https://github.com/Econify/moonshine-css</p>
           <p>📧 andrew@econify.com</p>
           <aside class="notes">
-            <ul>
-              <li>tailwind meets styled components</li>
-              <li>extremely simple</li>
-              <li>tiny runtime</li>
-              <li>super fast</li>
-              <li>get going quickly 🏎</li>
-            </ul>
             two takeaways
             <ul>
               <li>use this open src project</li>
               <li>we're hiring</li>
+              <li>TODO: need clean outro</li>
             </ul>
           </aside>
         </section>

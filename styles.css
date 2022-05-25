@@ -1,4 +1,3 @@
-/* TODO: move locally */
 @font-face {
   font-family: "GT Pressura";
   src: url(https://www.econify.com/fonts/gt-pressura-regular-web-webfont.woff);
@@ -11,4 +10,8 @@
 
 .byline {
   color: #b7b7b7;
+}
+
+#features {
+  list-style-type: none;
 }
