@@ -15,3 +15,15 @@
 #features {
   list-style-type: none;
 }
+
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  --r-block-margin: 0;
+}
+.logo + span {
+  margin-left: 8px;
+}
