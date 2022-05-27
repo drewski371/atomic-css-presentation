@@ -31,11 +31,17 @@
           <p class="byline">By Andrew Smith</p>
           <aside class="notes">
             <ul>
-              <li>Build websites for media companies</li>
+              <li>we came up with blend of css-in-js and atomic css</li>
+              <li>excited to talk about some performance and DX wins</li>
+              <li>
+                everyone on the team will tell you it's great to work with
+              </li>
+              <li>and what we're doing at Hearst</li>
+              <!-- <li>Build websites for media companies</li>
               <li>
                 high traffic sites where SEO and performance are really
                 important
-              </li>
+              </li> -->
             </ul>
             <ul>
               topics
@@ -75,7 +81,6 @@
           <img src="spiderman.png" width="575px" height="500px" />
           <aside class="notes">
             <ul>
-              <li>TODO: how big is their current CSS?</li>
               <li>
                 what that means - duplication everywhere. a very small amount of
                 styles covered half of their styling needs overall
@@ -135,11 +140,8 @@
         <section>
           <section>
             <aside class="notes">
-              TODO: write solid transitions for each agenda item
               <ul>
-                <li>styled components</li>
-                <li>css modules</li>
-                <li>tailwind</li>
+                <li>team put in a lot of effort to evaluate each of these</li>
               </ul>
             </aside>
             <p>💅 Styled Components</p>
@@ -162,7 +164,7 @@
           </section>
 
           <section>
-            <h3>Styled Components 💅</h3>
+            <h3>Styled Components</h3>
             <aside class="notes">
               <ul>
                 like
@@ -178,18 +180,18 @@
                 don't like
                 <li>complex runtime dependency</li>
                 <li>bad performance</li>
-                <li>
-                  puts work on the main thread client side TODO: confirm this
-                </li>
+                <li>puts work on the main thread client side</li>
               </ul>
             </aside>
             <pre>
-            <code data-trim data-line-numbers="|3-7|14-21">
+            <code data-trim data-line-numbers="|3-9|15-22">
               <script type="text/template">
               import { styled } from 'styled-components';
               
               const Title = styled.h1`
-                font-size: 1.5rem;
+                font-size: ${
+                  props => props.size === 'small' ? '1rem' : '1.5rem'
+                };
                 text-align: center;
                 color: cyan;
               `;
@@ -254,6 +256,12 @@
           <section>
             <h3>TailwindCSS</h3>
             <aside class="notes">
+              like
+              <ul>
+                <li>great community</li>
+                <li>I've had success with it</li>
+              </ul>
+              don't like
               <ul>
                 <li>we want full control</li>
                 <li>built according to client's needs</li>
@@ -297,6 +305,14 @@
         </section>
 
         <section>
+          <aside class="notes">
+            <ul>
+              <li>move generation of css prior to runtime</li>
+              <li>
+                transition - we took those things and came up with a solution
+              </li>
+            </ul>
+          </aside>
           <h1>We want 👍</h1>
           <ul>
             <li>to constrain CSS</li>
@@ -326,6 +342,8 @@
                   right now we're below 100kb of CSS, 5kb compressed, even
                   without purging
                 </li>
+                <li>client is 40kB</li>
+                <li>we are 10-12x less css</li>
               </ul>
             </aside>
             <ul>
@@ -469,7 +487,7 @@
 
         <section>
           <section>
-            <h1>Moonshine CSS</h1>
+            <img src="moonshine.svg" />
             <p><> https://github.com/Econify/moonshine-css</p>
             <aside class="notes">
               as a bonus...
@@ -539,7 +557,7 @@
             <ul>
               <li>use this open src project</li>
               <li>we're hiring</li>
-              <li>TODO: need clean outro</li>
+              <li>I hope this will make you think about the way you do CSS</li>
             </ul>
           </aside>
         </section>
